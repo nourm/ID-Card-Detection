@@ -4,10 +4,7 @@ import pytesseract
 import math
 from scipy import ndimage
 import imutils
-# create a shape
-# blank[200:300, 300:400]= 0,255,255
-# create a rectangle
-# rotation
+
 # les valeurs exacte a positioner : x= 10, y=0, w=280, h= 152 avec peri = 1134.3502860069275
 # configuring basics
 
@@ -132,8 +129,6 @@ print(img.shape[0])
 
 # blur
 blur = cv2.GaussianBlur(img, (3, 3), cv2.BORDER_DEFAULT)
-"""cv2.imshow("orginal", blur)
-cv2.waitKey(0)"""
 # edges
 edges = cv2.Canny(blur, 125, 175)
 cv2.imshow("orginal", edges)
@@ -151,9 +146,6 @@ x, y, w, h, cropped_image,box = getcontour(dilated, imgcon)
 cv2.imshow("crop",cropped_image)
 cv2.waitKey(0)
 
-#print(x, y, w, h)
-#print(img.shape[0], img.shape[1])
-#cv2.putText(imgcon, 'OpenCV', (x, y), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2, cv2.LINE_AA)
 pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'
 # gray
 img = cv2.cvtColor(cropped_image, cv2.COLOR_BGR2RGB)
@@ -161,10 +153,6 @@ sharpu=sharp(img)
 gray= cv2.cvtColor(sharpu, cv2.COLOR_RGB2GRAY)
 t1 = dilat(sharpu)
 t2 = thr(gray)
-"""cv2.imshow("imgco", imgcon)
-cv2.waitKey(0)
-cv2.imshow("edg", cropped_image)
-cv2.waitKey(0)"""
 
 img1 = cv2.imread('download.png')
 img1 = cv2.resize(img1, (595, 742), interpolation=cv2.INTER_AREA)
@@ -204,8 +192,6 @@ if median_angle !=0:
     cv2.waitKey(0)
     # blur
     blur = cv2.GaussianBlur(imCrop, (3, 3), cv2.BORDER_DEFAULT)
-    """cv2.imshow("orginal", blur)
-    cv2.waitKey(0)"""
     # edges
     edges = cv2.Canny(blur, 125, 175)
     dilated = cv2.dilate(edges, kernel, iterations=1)
